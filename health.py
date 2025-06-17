@@ -6,9 +6,7 @@ from sklearn.preprocessing import LabelEncoder, StandardScaler
 from sklearn.neighbors import KNeighborsClassifier
 from PIL import Image
 
-# =======================
 # 1. BACA & PERSIAPAN DATA
-# =======================
 df = pd.read_csv("data-ori.csv")
 
 # Encode data kategorik
@@ -34,9 +32,7 @@ X_train, X_test, y_train, y_test = train_test_split(
 model = KNeighborsClassifier(n_neighbors=5)
 model.fit(X_train, y_train)
 
-# =======================
 # 2. INPUT INTERAKTIF
-# =======================
 print("\n=== SISTEM PREDIKSI PERAWATAN PASIEN + VISUALISASI ===")
 print("Silakan masukkan data pasien untuk melihat prediksi dan grafik analisis.\n")
 
@@ -64,9 +60,7 @@ user_scaled = scaler.transform(user_data)
 prediction = model.predict(user_scaled)
 result = le_source.inverse_transform(prediction)[0]
 
-# =======================
 # 3. TAMPILKAN PREDIKSI
-# =======================
 print(f"\n📋 Hasil prediksi: Pasien sebaiknya dirawat secara **{result.upper()}**")
 
 # Gambar berdasarkan hasil
@@ -80,9 +74,7 @@ try:
 except FileNotFoundError:
     print("(❗) Gambar tidak ditemukan.")
 
-# =======================
 # 4. VISUALISASI DATASET
-# =======================
 plt.figure(figsize=(10, 6))
 sns.countplot(x=le_source.inverse_transform(df['SOURCE']), palette='Set2')
 plt.title("Distribusi Jenis Perawatan (IN/OUT)")
