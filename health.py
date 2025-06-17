@@ -63,20 +63,9 @@ result = le_source.inverse_transform(prediction)[0]
 # 3. TAMPILKAN PREDIKSI
 print(f"\n📋 Hasil prediksi: Pasien sebaiknya dirawat secara **{result.upper()}**")
 
-# Gambar berdasarkan hasil
-try:
-    img_path = "rawat_inap.jpg" if result == 'in' else "rawat_jalan.jpg"
-    img = Image.open(img_path)
-    plt.imshow(img)
-    plt.axis('off')
-    plt.title(f"Rekomendasi: {result.upper()}")
-    plt.show()
-except FileNotFoundError:
-    print("(❗) Gambar tidak ditemukan.")
-
 # 4. VISUALISASI DATASET
 plt.figure(figsize=(10, 6))
-sns.countplot(x=le_source.inverse_transform(df['SOURCE']), palette='Set2')
+sns.countplot(x=le_source.inverse_transform(df['SOURCE']), hue=le_source.inverse_transform(df['SOURCE']), palette='Set2', legend=False)
 plt.title("Distribusi Jenis Perawatan (IN/OUT)")
 plt.xlabel("Tipe Perawatan")
 plt.ylabel("Jumlah Pasien")
