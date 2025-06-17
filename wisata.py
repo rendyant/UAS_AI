@@ -57,6 +57,6 @@ user_data = pd.DataFrame([[age, duration, rating, vr_quality] + interest_vector]
 prediction = knn.predict(user_data)
 recommended_site = le_site.inverse_transform(prediction)
 
-# 5. OUTPUT
+# OUTPUT
 print("\n🎯 Destinasi wisata yang direkomendasikan untuk Anda adalah:")
 print(f">>> {recommended_site[0]}")
